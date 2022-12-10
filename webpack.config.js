@@ -1,7 +1,10 @@
 const path = require("path");
-const { merge } = require("webpack-merge"); // webpack配置合并  需要 yarn add webpack-merge -D
 
+// commonConfig需要
+const { merge } = require("webpack-merge"); // webpack配置合并  需要 yarn add webpack-merge -D
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 打包html  需要 yarn add html-webpack-plugin -D
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin; // 文件体积分析  需要 yarn add webpack-bundle-analyzer -D
 
@@ -51,6 +54,22 @@ const commonConfig = {
         type: "asset/resource",
       }, // 字体文件的处理
       {
+        test: /\.less$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "less-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [require("autoprefixer")],
+              },
+            },
+          },
+        ],
+      }, // 处理less文件
+      {
         test: /\.js$/,
         use: {
           loader: "babel-loader",
@@ -61,6 +80,9 @@ const commonConfig = {
   },
   plugins: [
     ...getHtmlWebpackPluginArr(), // 多页面文件打包 等价下面
+    new MiniCssExtractPlugin({
+      filename: "css/[name].css",
+    }),
   ],
   optimization: {
     runtimeChunk: "single", // 运行时代码 // 将 runtime 代码拆分为一个单独的 chunk。将其设置为 single 来为所有 chunk 创建一个 runtime bundle

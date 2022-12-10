@@ -1,7 +1,12 @@
+import "./index.less";
+
 function render() {
   const element = document.createElement("div");
+  const span = document.createElement("span");
 
   element.innerHTML = "hello home";
+  span.innerHTML = "hello span";
+  element.appendChild(span);
 
   document.body.appendChild(element);
 }
