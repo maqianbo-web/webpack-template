@@ -50,6 +50,13 @@ const commonConfig = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
       }, // 字体文件的处理
+      {
+        test: /\.js$/,
+        use: {
+          loader: "babel-loader",
+        },
+        exclude: "/node_modules/",
+      }, // 使用babel解析文件
     ],
   },
   plugins: [
