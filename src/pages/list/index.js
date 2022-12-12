@@ -5,4 +5,7 @@ function render() {
 
   document.body.appendChild(element);
 }
+const promise = new Promise((resolve, reject) => {
+  resolve(1);
+});
 render();

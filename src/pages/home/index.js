@@ -1,23 +1,7 @@
-import "./index.less";
+import Vue from "vue";
 
-function render() {
-  const element = document.createElement("div");
-  const span = document.createElement("span");
+import App from "./views/App.vue";
 
-  element.innerHTML = "hello home";
-  span.innerHTML = "hello span";
-  element.appendChild(span);
-
-  document.body.appendChild(element);
-}
-render();
-
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(11111);
-  }, 1000);
-});
-
-promise.then((data) => {
-  console.log("data", data);
-});
+new Vue({
+  render: (h) => h(App),
+}).$mount("#app");
