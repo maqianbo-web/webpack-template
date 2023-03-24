@@ -8,7 +8,13 @@
         "start": "webpack-dev-server",
         "server": "webpack-dev-server",
         "lint": "eslint ./src --fix",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "commit": "git add --all && git-cz"
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-customizable"
+        }
     },
     "browserslist": [
         "defaults",
@@ -20,9 +26,14 @@
     "devDependencies": {
         "@babel/core": "^7.20.5",
         "@babel/preset-env": "^7.20.2",
+        "@commitlint/cli": "^17.5.0",
+        "@commitlint/config-conventional": "^17.4.4",
         "autoprefixer": "^10.4.13",
         "babel-loader": "^9.1.0",
+        "commitizen": "^4.3.0",
+        "commitlint": "^17.5.0",
         "css-loader": "^6.7.2",
+        "cz-customizable": "^7.0.0",
         "eslint": "^8.29.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-config-standard": "^17.0.0",
